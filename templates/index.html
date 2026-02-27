@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Segmentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Customer Segmentation</h1>
+
+    <form action="/predict" method="post">
+        <label>Annual Income $</label>
+        <input type="number" name="income" required>
+
+        <label>Spending Score [1-100]</label>
+        <input type="number" name="score" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <h2>{{ prediction }}</h2>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
