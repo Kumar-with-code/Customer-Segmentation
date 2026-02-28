@@ -6,6 +6,9 @@ app = Flask(__name__,
             template_folder='p-seg/templates', 
             static_folder='p-seg/static')
 
+app = Flask(__name__)
+
+# load model
 model = pickle.load(open('kmeans_model.pkl', 'rb'))
 
 @app.route('/')
@@ -20,7 +23,8 @@ def predict():
     data = np.array([[income, score]])
     cluster = model.predict(data)[0]
 
-    # Segmenting
+
+    # map cluster meaning
     if cluster == 1:
         result = " Premium Customer"
     elif cluster == 3:
